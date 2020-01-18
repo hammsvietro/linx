@@ -1,25 +1,20 @@
-import queue
+import Queue
 import time
 import Product
 import json
+import Functions
+import multiprocessing
 
 ''' PYTHON 3  '''
 
 
-fila = queue.queue()
 
-json_data = []
+queue = Queue.Queue()#Cria objeto fila
+parsed_json = Functions.addProducts("test.json")
 
-with open('test.json') as f:
-   for line in f:
-       json_data.append(line)
+p1 = multiprocessing.Process(target=Functions.queueAdder,args=(parsed_json,queue,))
+p2 = multiprocessing.Process(target=Functions.queueCleaner,args=(queue,))
+p1.start()
+p2.start()
 
-parsed_json = []
-i = 0
-for line in json_data:
-    #time.sleep(1)
-    parsed_json.append(json.loads(line))
-
-produto = Product.Product(parsed_json[0]['id'],parsed_json[0]['name'])
-produto.addToQueue(fila)
-print(produto)
+p1.join()

@@ -1,4 +1,4 @@
-class queue:
+class Queue:
     def __init__(self):
         self.queue = []
         self.size = 0
@@ -16,6 +16,7 @@ class queue:
     def push(self,element):
 
         self.queue.append(element)
+        self.size += 1
         return True
 
     def pop(self):
@@ -23,4 +24,5 @@ class queue:
         if(self.isEmpty()):
             print("Queue is empty")
             return None
-        return self.pop(0)
+        self.size -= 1
+        return self.queue.pop(0)

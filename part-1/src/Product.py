@@ -1,5 +1,5 @@
 import time
-import queue
+import Queue
 
 class Product():
 
@@ -23,7 +23,7 @@ class Product():
         return self.id == other.id and self.name == other.name
 
     def isInQueue(self,fila):
-        if not isinstance(fila,queue.queue): #VERIFICAR SE NAO SAO CLASSES DIFERENTES
+        if not isinstance(fila,Queue.Queue): #VERIFICAR SE NAO SAO CLASSES DIFERENTES
             return NotImplemented
 
         for i in fila.queue:
@@ -32,9 +32,5 @@ class Product():
 
             return False
 
-    def addToQueue(self, fila):
-        if not isinstance(fila,queue.queue): #VERIFICAR SE NAO SAO CLASSES DIFERENTES
-            return NotImplemented
-        self.startTime() # ADD VARIAVEL DE INICIO DE CRONOMETRO NO OBJETO
-        fila.push(self)
-        return True
+    def timeInQueue():
+        return int(time.time()-self.startTime)
