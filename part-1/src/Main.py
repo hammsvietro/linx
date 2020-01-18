@@ -1,14 +1,25 @@
 import queue
 import time
 import Product
+import json
 
 ''' PYTHON 3  '''
-abacate = Product.Product(123,"abacate")
-melancia = Product.Product(321,"melancia")
-fila = queue.Queue()
 
-print(abacate)
-print(abacate.isInQueue(fila))
-abacate.addToQueue(fila)
-print(abacate.isInQueue(fila))
-print(abacate)
+
+fila = queue.queue()
+
+json_data = []
+
+with open('test.json') as f:
+   for line in f:
+       json_data.append(line)
+
+parsed_json = []
+i = 0
+for line in json_data:
+    #time.sleep(1)
+    parsed_json.append(json.loads(line))
+
+produto = Product.Product(parsed_json[0]['id'],parsed_json[0]['name'])
+produto.addToQueue(fila)
+print(produto)

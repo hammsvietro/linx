@@ -23,19 +23,18 @@ class Product():
         return self.id == other.id and self.name == other.name
 
     def isInQueue(self,fila):
-        if not isinstance(fila,queue.Queue): #VERIFICAR SE NAO SAO CLASSES DIFERENTES
+        if not isinstance(fila,queue.queue): #VERIFICAR SE NAO SAO CLASSES DIFERENTES
             return NotImplemented
-        if self in fila.queue: #se a instancia
-            return True
-        return False
+
+        for i in fila.queue:
+            if i == self:
+                return True
+
+            return False
 
     def addToQueue(self, fila):
-        if not isinstance(fila,queue.Queue): #VERIFICAR SE NAO SAO CLASSES DIFERENTES
+        if not isinstance(fila,queue.queue): #VERIFICAR SE NAO SAO CLASSES DIFERENTES
             return NotImplemented
         self.startTime() # ADD VARIAVEL DE INICIO DE CRONOMETRO NO OBJETO
-        try:
-            fila.put(self)
-        except queue.Full:
-            print("Queue is full!")
-            return None
+        fila.push(self)
         return True
