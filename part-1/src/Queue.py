@@ -4,14 +4,15 @@ class Queue:
         self.size = 0
 
     def isEmpty(self):
+        if self.size > 0:
+            return False
+        return True
 
-        if self.size == 0:
-            return True
-        return False
+    def __str__(self):
+        return str(self.__dict__)
 
-    def size(self):
-
-        return self.size()
+    def getSize(self):
+        return self.size
 
     def push(self,element):
 

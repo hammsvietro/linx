@@ -1,8 +1,8 @@
-import Queue
-import time
 import Product
-import json
+import Queue
 import Functions
+import time
+import json
 import multiprocessing
 
 ''' PYTHON 3  '''

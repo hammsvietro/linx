@@ -22,15 +22,14 @@ class Product():
 
         return self.id == other.id and self.name == other.name
 
-    def isInQueue(self,fila):
-        if not isinstance(fila,Queue.Queue): #VERIFICAR SE NAO SAO CLASSES DIFERENTES
+    def isInQueue(self,queue):
+        if not isinstance(queue,Queue.Queue): #VERIFICAR SE NAO SAO CLASSES DIFERENTES
             return NotImplemented
 
-        for i in fila.queue:
-            if i == self:
+        for i in queue.queue:
+            if i.id == self.id and i.name == self.name:
                 return True
-
-            return False
+        return False
 
     def timeInQueue():
         return int(time.time()-self.startTime)

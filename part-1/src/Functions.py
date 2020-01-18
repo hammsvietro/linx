@@ -27,6 +27,7 @@ def addToQueue(product, queue):
     if not product.isInQueue(queue):
         product.startTime() # ADD VARIAVEL DE INICIO DE CRONOMETRO NO OBJETO
         queue.push(product)
+        
         print("200 OK")
         return True
     else:
@@ -39,14 +40,16 @@ def queueAdder(parsed_json,queue):
         name = parsed_json[i]['name']
         product = Product.Product(id,name)
         addToQueue(product,queue)
-        time.sleep(4)
+        time.sleep(1)
         i+=1
     return True
 
 def queueCleaner(queue):
     while True:
-        if not queue.isEmpty():
+        if queue.getSize() > 0:
+            print("oi")
             timeInQueue = queue.queue[0].timeInQueue()
-            if timeInQueue >= 10:
+            print(timeInQueue)
+            if timeInQueue >= 2:
+                print(popado)
                 queue.pop()
-    
