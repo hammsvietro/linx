@@ -1,3 +1,4 @@
+import Product
 class Queue:
     def __init__(self):
         self.queue = []
@@ -23,7 +24,9 @@ class Queue:
     def pop(self):
 
         if(self.isEmpty()):
-            print("Queue is empty")
             return None
         self.size -= 1
         return self.queue.pop(0)
+
+    def firstTime(self):
+        return self.queue[0].timeInQueue()

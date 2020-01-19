@@ -7,7 +7,7 @@ class Product():
         self.id = id
         self.name = name
 
-    def startTime(self):
+    def timeStarter(self):
         self.startTime = time.time()
 
 
@@ -26,10 +26,17 @@ class Product():
         if not isinstance(queue,Queue.Queue): #VERIFICAR SE NAO SAO CLASSES DIFERENTES
             return NotImplemented
 
+
         for i in queue.queue:
+
             if i.id == self.id and i.name == self.name:
+                print("403 Forbidden: wait ",600 - i.timeInQueue() ," seconds to do this")
                 return True
+
+
+        print("200 OK")
         return False
 
     def timeInQueue(self):
-        return time.time()-self.startTime
+        totalTime = time.time() - self.startTime
+        return int(totalTime)
