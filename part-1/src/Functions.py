@@ -2,6 +2,8 @@ import json
 import Queue
 import Product
 import time
+import multiprocessing
+
 
 
 
@@ -21,35 +23,63 @@ def addProducts(file):
     return parsed_json
 
 def addToQueue(product, queue):
-    if not isinstance(queue,Queue.Queue): #VERIFICAR SE NAO SAO CLASSES DIFERENTES
-        return NotImplemented
+
     print("fazendo upload de ",product)
-    if not product.isInQueue(queue):
+
+    temp_queue = Queue.Queue()
+
+    while queue.empty() is False: #Troca multiprocessing.queue para queue implementada para poder acessar todos os elementos da fila
+        temp_queue.push(queue.get())
+
+    #print("queue substituida! p/ temp")
+    if not product.isInQueue(temp_queue):
         product.startTime() # ADD VARIAVEL DE INICIO DE CRONOMETRO NO OBJETO
-        queue.push(product)
-        
+        temp_queue.push(product)
+
         print("200 OK")
-        return True
+
     else:
         print("403 Forbidden")
 
-def queueAdder(parsed_json,queue):
+    while temp_queue.isEmpty() is False:
+        queue.put(temp_queue.pop())
+
+    #print("voltou para multiprocessing.queue!!!")
+
+def queueAdder(parsed_json,queue,lock,done):
+
     i = 0
     for lines in parsed_json:
         id = parsed_json[i]['id']
         name = parsed_json[i]['name']
         product = Product.Product(id,name)
+        lock.acquire()
         addToQueue(product,queue)
-        time.sleep(1)
+        lock.release()
+        time.sleep(2)
         i+=1
-    return True
 
-def queueCleaner(queue):
+    done = 1
+    if(done == 1):
+        print("deu bom")
+
+def queueCleaner(queue,lock,done):
     while True:
-        if queue.getSize() > 0:
-            print("oi")
-            timeInQueue = queue.queue[0].timeInQueue()
-            print(timeInQueue)
-            if timeInQueue >= 2:
-                print(popado)
-                queue.pop()
+
+        temp_queue = Queue.Queue()
+        lock.acquire()
+
+        while queue.empty() is False:
+            temp_queue.push(queue.get())
+
+        if temp_queue.getSize() > 0:
+            timeInQueue = temp_queue.queue[0].timeInQueue()
+
+            if timeInQueue >= 6:
+                print("POPADASSO")
+                temp_queue.pop()
+
+        while temp_queue.isEmpty() is not True:
+                queue.put(temp_queue.pop())
+
+        lock.release()

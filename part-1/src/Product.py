@@ -31,5 +31,5 @@ class Product():
                 return True
         return False
 
-    def timeInQueue():
-        return int(time.time()-self.startTime)
+    def timeInQueue(self):
+        return time.time()-self.startTime
