@@ -15,9 +15,9 @@ o multriprocessing foi implementado com multiprocessing.queue e multiprocessing.
 
 ##Como Rodar
 
-O primeiro passo é entrar na pasta test/ e rodar o scrpit Json_Generator.py este criará um arquivo test.json com 140 produtos diferentes, porem vai repetí-los 3 vezes durante a lista ou seja, 420 objetos json.
+O primeiro passo é entrar na pasta test/ e rodar o scrpit Json_Generator.py com Python 3 este criará um arquivo test.json com 140 produtos diferentes, porem vai repetí-los 3 vezes durante a lista ou seja, 420 objetos json.
 
-Agora só basta rodar o arquivo Main.py na pasta src/
+Agora só basta rodar o arquivo Main.py com Python 3 na pasta src/
 
 A main irá acessar o test.json gerado aleatóriamente e ira inserir um produto entre 3.5 a 4.3 segundos, isso garantirá que na segunda iteração de requisição que todos eles retornarão 403 Forbidden (ou quase se random.unifrom() gerar sempre ~4.3 passará mais de 10 minutos até a segunda iteração) mas a probabilidade é quase nula.
 
