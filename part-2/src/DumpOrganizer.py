@@ -4,8 +4,8 @@ import json
 def jsonWriter(dump):
 
     with open("update.json", "a") as f:
-        json.dump(dump,f,sort_keys=True, indent=4, separators=(',', ': '))
-        print("Update.json Created")
+        json.dump(dump,f, indent=3, separators=(',', ': '))
+        print("update.json created")
         f.close()
 
 

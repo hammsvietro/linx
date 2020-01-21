@@ -1,16 +1,16 @@
 # Pedro Henrique Hamms Vietro
-#GitHub: Hammsvietro
+
 
 
 ### Part-1
 
 Resolvi implementar o desafio 1 com multiprocessing.
 
-O primeiro core lê o arquivo json de produtos, que sera gerado aleatoriamente, e escolhe checa se ele existe em uma fila, caso ela nao existir, é retornado o codigo 200 OK que permite a requisição, caso contrário, se ela já estiver na lista, significa que nos ultimos 10 minutos, o mesmo produto ja foi inserido, então é retornado o código 403 Forbidden, negando a requisição.
+O primeiro core lê o arquivo json de produtos, que será gerado aleatoriamente, e checa se ele existe em uma fila, se ele não existir, é retornado o codigo 200 OK que permite a requisição, caso contrário, se ele já estiver na lista, significa que nos ultimos 10 minutos, o mesmo produto ja foi inserido, então é retornado o código 403 Forbidden, negando a requisição.
 
 O segundo core controla a fila, assim que o primeiro elemento estiver há 10 minutos na fila, ele é removido, permitindo novamente a requisição do produto.
 
-o multriprocessing foi implementado com multiprocessing.queue e multiprocessing.lock, a fila e o semáforo já implementados pela biblioteca permitem segurança ao manipular a mesma memória sem erros, podendo receber uma quantidade infinita de requisições sem ocorrer problemas
+o multriprocessing foi implementado com multiprocessing.queue e multiprocessing.lock, a fila e o semáforo já implementados pela biblioteca permitem segurança ao manipular a mesma memória sem erros, podendo receber uma quantidade "infinita" de requisições sem ocorrer problemas.
 
 
 ##Como Rodar
