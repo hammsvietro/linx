@@ -13,7 +13,7 @@ O segundo core controla a fila, assim que o primeiro elemento estiver há 10 min
 o multriprocessing foi implementado com multiprocessing.queue e multiprocessing.lock, a fila e o semáforo já implementados pela biblioteca permitem segurança ao manipular a mesma memória sem erros, podendo receber uma quantidade "infinita" de requisições sem ocorrer problemas.
 
 
-##Como Rodar
+## Como Rodar
 
 O primeiro passo é entrar na pasta test/ e rodar o scrpit Json_Generator.py com Python 3 este criará um arquivo test.json com 140 produtos diferentes, porem vai repetí-los 3 vezes durante a lista ou seja, 420 objetos json.
 
